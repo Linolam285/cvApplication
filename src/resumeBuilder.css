@@ -1,0 +1,11 @@
+.resumeBuilder {
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    margin-right:auto;
+
+}
+
+#submitResumeBuilder {
+    background:linear-gradient(to right, rgb(247, 191, 10) 0%, rgb(236, 195, 57) 50%, rgb(247, 209, 85) 100%);
+}

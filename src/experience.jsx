@@ -49,73 +49,75 @@ function Experience({ sendData }) {
 
   return (
     <>
-      <form action="" onSubmit = {handleSubmit}>
-        <legend>Your educational experience</legend>
-        <fieldset>
-          <div style={fieldStyle}>
-            <label htmlFor="schoolname">School Name</label>
-            <input
-              required
-              type="text"
-              name="schoolname"
-              onChange={(e) => {
-                handleInput(e);
-              }}
-              value={currentExperience.schoolname}
-            />
-          </div>
-          <div style={fieldStyle}>
-            <label htmlFor="titlestudy">Title of Study</label>
-            <input
-              required
-              type="text"
-              name="titlestudy"
-              onChange={(e) => {
-                handleInput(e);
-              }}
-              value={currentExperience.titlestudy}
-            />
-          </div>
-          <div style={fieldStyle}>
-            <label htmlFor="startdate">Start date</label>
-            <input
-              required
-              type="date"
-              name="startdate"
-              onChange={(e) => {
-                handleInput(e);
-              }}
-              value={currentExperience.startdate}
-            />
-          </div>
-          <div style={fieldStyle}>
-            <label htmlFor="enddate">End date</label>
-            <input
-              required
-              type="date"
-              name="enddate"
-              onChange={(e) => {
-                handleInput(e);
-              }}
-              value={currentExperience.enddate}
-            />
-          </div>
-          <div style={{ position: "relative" }}>
-            <button
-              className="addExperience"
-              type="submit"
-            >
-              Add
-            </button>
+    <div className = "educationalExperience">
+        <form action="" onSubmit = {handleSubmit}>
+          <legend>Your educational experience</legend>
+          <fieldset style = {{border:"none"}}>
+            <div style={fieldStyle}>
+              <label htmlFor="schoolname">School Name</label>
+              <input
+                required
+                type="text"
+                name="schoolname"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={currentExperience.schoolname}
+              />
+            </div>
+            <div style={fieldStyle}>
+              <label htmlFor="titlestudy">Title of Study</label>
+              <input
+                required
+                type="text"
+                name="titlestudy"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={currentExperience.titlestudy}
+              />
+            </div>
+            <div style={fieldStyle}>
+              <label htmlFor="startdate">Start date</label>
+              <input
+                required
+                type="date"
+                name="startdate"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={currentExperience.startdate}
+              />
+            </div>
+            <div style={fieldStyle}>
+              <label htmlFor="enddate">End date</label>
+              <input
+                required
+                type="date"
+                name="enddate"
+                onChange={(e) => {
+                  handleInput(e);
+                }}
+                value={currentExperience.enddate}
+              />
+            </div>
+            <div style={{ position: "relative" }}>
+              <button
+                className="addExperience"
+                type="submit"
+              >
+                Add
+              </button>
 
-            {showSuccess && (
-              <div className = "successPopup">
-                Experience added!
-              </div>
-            )}
-          </div>
-        </fieldset>
-      </form>
+              {showSuccess && (
+                <div className = "successPopup">
+                  Experience added!
+                </div>
+              )}
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </>
   );
 }

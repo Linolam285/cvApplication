@@ -2,6 +2,7 @@ import {useState} from "react";
 import Info from "./info.jsx";
 import ProExperience from "./proExperience.jsx";
 import Experience from "./experience.jsx";
+import "./resumeBuilder.css";
 
 function ResumeBuilder({sendAll}) { 
     const [isSubmitted,setIsSubmitted] = useState(false);
@@ -31,15 +32,16 @@ function ResumeBuilder({sendAll}) {
 
 
     return <>
-        <Info sendData = {handleInfo}/>
-        <Experience sendData = {handleExperience}/>
-        <ProExperience sendData = {handleProExperience}/>
-        {!isSubmitted?
-            <button type="submit" onClick = {submitForm}>Submit</button>
-                :
-            ""
-        }
-        
+        <div className = "resumeBuilder" style = {{width:"30vw"}}>
+            <Info sendData = {handleInfo}/>
+            <Experience sendData = {handleExperience}/>
+            <ProExperience sendData = {handleProExperience}/>
+            {!isSubmitted?
+                <button type="submit" id = "submitResumeBuilder" onClick = {submitForm}>Submit</button>
+                    :
+                ""
+            }
+        </div>
     </>
 }
 
