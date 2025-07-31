@@ -24,6 +24,9 @@ function ProExperience({sendData}) {
     }
     
     const handleSubmit = (e) => {
+        if (currentProExperience.companyname === "") {
+            return;
+        }
         e.preventDefault();
         const newNumber = number+1;
         setNumber(newNumber);
@@ -52,6 +55,14 @@ function ProExperience({sendData}) {
         })
         setProExperience(updatedList);
         sendData(updatedList);
+        setIsEditing(false);
+        setCurrentProExperience({
+            number:number,
+            companyname:"",
+            positiontitle:"",
+            startdate:"",
+            enddate:""
+        });
     }
 
     const handleEdit = (e) => {
@@ -71,6 +82,7 @@ function ProExperience({sendData}) {
         })
         setProExperience(updatedList);
         sendData(updatedList);
+        setIsEditing(false);
     }
 
     return <>
@@ -98,7 +110,7 @@ function ProExperience({sendData}) {
                         {!isEditing?
                         <button type="submit" className = "addExperience">Add</button>
                             :
-                        <button type = "button" className = "editExperience" onClick = {handleEditConfirm}>Edit Confirm</button>
+                        <button type = "button" className = "editExperienceConfirm" onClick = {handleEditConfirm}>Edit Confirm</button>
                         }
                         
                         {(showSuccess&&!isEditing) && (

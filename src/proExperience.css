@@ -62,3 +62,8 @@
     padding:18px;
     background-color:white;
 }
+
+.editExperienceConfirm {
+    color:black;
+    background: linear-gradient(to right, rgb(22,100,100)0%,rgb(25, 151, 151)50rgb(19, 177, 177)100%);
+}
