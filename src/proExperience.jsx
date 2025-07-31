@@ -10,7 +10,7 @@ function ProExperience({sendData}) {
     });
     const [number,setNumber] = useState(0);
     const [proExperience,setProExperience] = useState([]);
-
+    const [showSuccess,setShowSuccess] = useState(false);
     const fieldStyle = {
         display: "flex",
         flexDirection: "column",
@@ -23,6 +23,10 @@ function ProExperience({sendData}) {
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!e.currentTarget.reportValidity()) {
+            // Le formulaire est invalide : ne pas continuer
+            return;
+        }
         setNumber(number+1);
         const updatedProExperience = [...proExperience,currentProExperience]; // car state asynchrone, on veut avoir cette màj instantanément
         setProExperience(updatedProExperience); 
@@ -34,11 +38,16 @@ function ProExperience({sendData}) {
             startdate:"",
             enddate:""
         });
+        setShowSuccess(true);
+        const timeout = 2000;
+        setTimeout(() => {
+            setShowSuccess(false);
+        }, timeout);
         //setProExpList([...proExpList, `<div>${proExperience[number].companyName}</div>`]);
     }
 
     return <>
-        <form action="">
+        <form action="" onSubmit = {handleSubmit}>
             <legend>Your professional experience</legend>
             <fieldset>
                 <div style={fieldStyle}>
@@ -57,7 +66,16 @@ function ProExperience({sendData}) {
                     <label htmlFor="enddate">End date</label>
                     <input required type="date" name = "enddate" onChange = {(e) => {handleInput(e)}} value = {currentProExperience.enddate}/>
                 </div>
-                <button type="submit" onClick = {handleSubmit}>Add</button>
+                <div style = {{position:"relative"}}>
+                    <button type="submit" className = "addExperience">Add</button>
+                    {showSuccess && (
+                        <div className = "successPopup">
+                            Professional Experience Added!
+                        </div>
+                    )}
+                </div>
+                
+                
             </fieldset>
         </form>
         </>

@@ -1,0 +1,20 @@
+.addExperience {
+    background: linear-gradient(to right,rgb(65, 77, 83) 0%,rgb(53, 72, 83) 50%,rgb(46, 76, 94) 100%);
+    color:white;
+}
+
+.successPopup {
+    position: "absolute";
+    bottom: "100%";
+    left: "50%";
+    transform: "translateX(-50%)";
+    margin-bottom: "8px";
+    padding: "6px 12px";
+    background-color: "#4caf50";
+    color: "white";
+    border-radius: "4px";
+    font-size: "14px";
+    white-space: "nowrap";
+    box-shadow: "0 2px 6px rgba(0,0,0,0.2)";
+    z-index:10;
+}

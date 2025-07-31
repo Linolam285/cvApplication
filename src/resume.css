@@ -15,3 +15,12 @@
 .date {
     font-weight:bold;
 }
+
+.expTitle {
+    font-size:1.5em;
+    font-weight:900;
+}
+
+.expUnit  {
+    margin-bottom:15px;
+}

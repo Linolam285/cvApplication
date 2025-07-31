@@ -17,6 +17,16 @@ function Resume({data}) {
                 //return nécessaire car syntaxe avec flèche sans parenthèses (return explicite ici)
             })}
         </div>
+        <div className = "exp">
+            <div className="expTitle">Education</div>
+            {data.experience.map((exp,index) => {
+                return <div key = {index*100} className = "expUnit">
+                    <div className="date">{exp.startdate} - {exp.enddate}</div>
+                    <div className="schoolName">School Name : {exp.schoolname}</div>
+                    <div className="titleStudy">Title of Study : {exp.titleStudy}</div>
+                </div>
+            })}
+        </div>
     </>
 }
 
