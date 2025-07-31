@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import './App.css';
 import ResumeBuilder from "./resumeBuilder.jsx";
+import Resume from "./resume.jsx";
 
 function App() {
+  
   const [data,setData] = useState(null);
   const handleData = (info,experience,proExperience) => {
     setData({info,
@@ -13,11 +15,10 @@ function App() {
   
   return (
     <>
-      <ResumeBuilder sendAll = {handleData}/>
-     {data?
+      <ResumeBuilder  sendAll = {handleData}/>
+     {data!=null?
         <>
-            <h1>{data.info.fullname}</h1>
-            <div>{data.info.phonenumber} • {data.info.email}</div>
+            <Resume data = {data}/>
         </>
         :
         <div>Waiting...</div>

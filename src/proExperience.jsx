@@ -1,15 +1,15 @@
 import {useState} from "react";
 
 
-function ProExperience({setData}) {
-    const [proExpList,setProExpList] = useState([]);
-    const [number,setNumber] = useState(1);
-    const [proExperience,setProExperience] = useState([{
+function ProExperience({sendData}) {
+    const [currentProExperience,setCurrentProExperience] = useState({
         companyname:"",
-        positiotitle:"",
+        positiontitle:"",
         startdate:"",
         enddate:""
-    }])
+    });
+    const [number,setNumber] = useState(0);
+    const [proExperience,setProExperience] = useState([]);
 
     const fieldStyle = {
         display: "flex",
@@ -18,13 +18,23 @@ function ProExperience({setData}) {
     };
 
     const handleInput = (e) => {
-        setProExperience([...proExperience,{...proExperience[number],[e.target.name]:e.target.value}]);
+        setCurrentProExperience({...currentProExperience,[e.target.name]:e.target.value});
     }
     
     const handleSubmit = (e) => {
         e.preventDefault();
         setNumber(number+1);
-        setProExpList([...proExpList, `<div>${proExperience[number].companyName}</div>`]);
+        const updatedProExperience = [...proExperience,currentProExperience]; // car state asynchrone, on veut avoir cette màj instantanément
+        setProExperience(updatedProExperience); 
+        sendData(updatedProExperience);
+        console.log(updatedProExperience);
+        setCurrentProExperience({
+            companyname:"",
+            positiontitle:"",
+            startdate:"",
+            enddate:""
+        });
+        //setProExpList([...proExpList, `<div>${proExperience[number].companyName}</div>`]);
     }
 
     return <>
@@ -33,31 +43,19 @@ function ProExperience({setData}) {
             <fieldset>
                 <div style={fieldStyle}>
                     <label htmlFor="companyname">Company Name</label>
-                    <input type="text" required name = "companyname" onChange = {(e) => {
-                        handleInput(e);
-                        setData([...proExperience,{...proExperience[number],companyname:e.target.value}]);
-                    }}/>
+                    <input type="text" required name = "companyname" onChange = {(e) => {handleInput(e)}} value = {currentProExperience.companyname}/>
                 </div>
                 <div style = {fieldStyle}>
                     <label htmlFor="positiontitle">Position Title</label>
-                    <input required  type="text" name = "positiontitle" onChange = {(e) => {
-                        handleInput(e);
-                        setData([...proExperience,{...proExperience[number],positiontitle:e.target.value}]);
-                    }}/>
+                    <input required  type="text" name = "positiontitle" onChange = {(e) => {handleInput(e)}} value = {currentProExperience.positiontitle}/>
                 </div>
                 <div style = {fieldStyle}>
                     <label htmlFor="startdate">Start date</label>
-                    <input required  type="date" name = "startdate" onChange = {(e) => {
-                        handleInput(e);
-                        setData([...proExperience,{...proExperience[number],startdate:e.target.value}]);
-                    }}/>
+                    <input required  type="date" name = "startdate" onChange = {(e) => {handleInput(e)}} value = {currentProExperience.startdate}/>
                 </div>
                 <div style = {fieldStyle}>
                     <label htmlFor="enddate">End date</label>
-                    <input required type="date" name = "enddate" onChange = {(e) => {
-                        handleInput(e);
-                        setData([...proExperience,{...proExperience[number],enddate:e.target.value}]);
-                    }}/>
+                    <input required type="date" name = "enddate" onChange = {(e) => {handleInput(e)}} value = {currentProExperience.enddate}/>
                 </div>
                 <button type="submit" onClick = {handleSubmit}>Add</button>
             </fieldset>
