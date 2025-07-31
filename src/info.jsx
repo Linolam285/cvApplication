@@ -1,13 +1,18 @@
-import {useState} from "react";
+import {useState,useEffect} from "react";
 
 
 function Info({sendData}) {
     
+
     const [info,setInfo] = useState({
         fullname: "",
         email: "",
         phonenumber: ""
     });
+
+    useEffect(() => {
+        sendData(info)
+    },[])
 
     const fieldStyle = {
         display: "flex",

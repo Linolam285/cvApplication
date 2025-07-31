@@ -36,7 +36,7 @@ function ResumeBuilder({sendAll}) {
             <Info sendData = {handleInfo}/>
             <Experience sendData = {handleExperience}/>
             <ProExperience sendData = {handleProExperience}/>
-            {!isSubmitted?
+            {!isSubmitted && info !== {}?
                 <button type="submit" id = "submitResumeBuilder" onClick = {submitForm}>Submit</button>
                     :
                 ""
