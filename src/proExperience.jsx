@@ -2,6 +2,7 @@ import {useState} from "react";
 import "./proExperience.css";
 
 function ProExperience({sendData}) {
+    const [isEditing,setIsEditing] = useState(false);
     const [number,setNumber] = useState(0);
     const [currentProExperience,setCurrentProExperience] = useState({
         number:number,
@@ -45,6 +46,33 @@ function ProExperience({sendData}) {
         //setProExpList([...proExpList, `<div>${proExperience[number].companyName}</div>`]);
     }
 
+    const handleDelete = (e) => {
+        const updatedList = proExperience.filter((proExp) => {
+            return proExp.number !== Number(e.target.dataset.number);
+        })
+        setProExperience(updatedList);
+        sendData(updatedList);
+    }
+
+    const handleEdit = (e) => {
+        setCurrentProExperience(proExperience.find((proExp) => {
+            return proExp.number === Number(e.target.dataset.number);
+        }))
+        setIsEditing(true);
+    }
+
+    const handleEditConfirm = (e) => {
+        const updatedList = proExperience.map((proExp) => {
+            if (proExp.number === currentProExperience.number) {
+                return currentProExperience;
+            } else {
+                return proExp;
+            }
+        })
+        setProExperience(updatedList);
+        sendData(updatedList);
+    }
+
     return <>
         <div className = "professionalExperience">
             <form action="" onSubmit = {handleSubmit}>
@@ -67,8 +95,13 @@ function ProExperience({sendData}) {
                         <input required type="date" name = "enddate" onChange = {(e) => {handleInput(e)}} value = {currentProExperience.enddate}/>
                     </div>
                     <div style = {{position:"relative"}}>
+                        {!isEditing?
                         <button type="submit" className = "addExperience">Add</button>
-                        {showSuccess && (
+                            :
+                        <button type = "button" className = "editExperience" onClick = {handleEditConfirm}>Edit Confirm</button>
+                        }
+                        
+                        {(showSuccess&&!isEditing) && (
                             <div className = "successPopup">
                                 Professional Experience Added!
                             </div>
@@ -78,11 +111,11 @@ function ProExperience({sendData}) {
                 </fieldset>
             </form>
             <div className = "expList">
-                        {proExperience.length > 0 && proExperience.map((proExp,index) => {
-                            return <div className = "divExp" key = {index}>
-                                <div className = "divExpCompanyName">{proExperience[index].companyname}</div>
-                                <button className = "deleteExp" type = "text">Delete</button> 
-                                <button className = "editExp" type = "text">Edit</button>
+                        {proExperience.length > 0 && proExperience.map((proExp) => {
+                            return <div className = "divExp" key = {proExp.number}>
+                                <div className = "divExpCompanyName">{proExp.companyname}</div>
+                                <button className = "deleteExp" type = "button" onClick = {handleDelete} data-number = {proExp.number} >Delete</button> 
+                                <button className = "editExp" type = "button" onClick = {handleEdit} data-number = {proExp.number}>Edit</button>
                             </div>
                         })}
             </div>
