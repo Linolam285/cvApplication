@@ -23,7 +23,7 @@ function Resume({data}) {
                 return <div key = {index*100} className = "expUnit">
                     <div className="date">{exp.startdate} - {exp.enddate}</div>
                     <div className="schoolName">School Name : {exp.schoolname}</div>
-                    <div className="titleStudy">Title of Study : {exp.titleStudy}</div>
+                    <div className="titleStudy">Title of Study : {exp.titlestudy}</div>
                 </div>
             })}
         </div>

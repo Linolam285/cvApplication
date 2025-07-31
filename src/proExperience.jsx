@@ -46,6 +46,7 @@ function ProExperience({sendData}) {
         setTimeout(() => {
             setShowSuccess(false);
         }, timeout);
+        console.log("NOThandleditconfirm");
         //setProExpList([...proExpList, `<div>${proExperience[number].companyName}</div>`]);
     }
 
@@ -75,6 +76,7 @@ function ProExperience({sendData}) {
     const handleEditConfirm = (e) => {
         const updatedList = proExperience.map((proExp) => {
             if (proExp.number === currentProExperience.number) {
+                console.log("handleditconfirm");
                 return currentProExperience;
             } else {
                 return proExp;
@@ -83,6 +85,14 @@ function ProExperience({sendData}) {
         setProExperience(updatedList);
         sendData(updatedList);
         setIsEditing(false);
+        const newNumber = number+1
+        setCurrentProExperience({
+            number:newNumber,
+            companyname:"",
+            positiontitle:"",
+            startdate:"",
+            enddate:""
+        })
     }
 
     return <>
@@ -108,7 +118,10 @@ function ProExperience({sendData}) {
                     </div>
                     <div style = {{position:"relative"}}>
                         {!isEditing?
+                        <>
                         <button type="submit" className = "addExperience">Add</button>
+                        <div></div>
+                        </> // evite un bug (quand le bouton edit confirm est appuyé le bouton add l'est aussi car superposition)
                             :
                         <button type = "button" className = "editExperienceConfirm" onClick = {handleEditConfirm}>Edit Confirm</button>
                         }

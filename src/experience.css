@@ -24,3 +24,33 @@
     padding:18px;
     background-color:white;
 }
+
+.expList {
+    display:flex;
+    flex-direction:column;
+    margin-top:1.4em;
+    gap:0.5em;
+}
+
+.deleteExp {
+    grid-row:2/3;
+    grid-column:1/2;
+    background:linear-gradient(to right, rgb(224, 81, 81) 0%, rgb(224, 68, 68) 50%, rgb(214, 57, 57) 100%);
+    font-weight:bold;
+    color:white;
+}
+
+.editExp {
+    grid-row:2/3;
+    grid-column:2/3;
+    background: linear-gradient(to right, rgb(76, 179, 35) 0%, rgb(62, 179, 15) 50%, rgb(53, 173, 6) 100%);
+    font-weight:bold;
+    color:white;
+}
+
+.divExpCompanyName {
+    grid-column:1/-1;
+    color:white;
+    justify-self:center;
+    font-weight:bold;
+}
