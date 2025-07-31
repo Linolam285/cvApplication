@@ -8,7 +8,7 @@ function Resume({data}) {
         <div className = "emailphone">{data.info.email} • {data.info.phonenumber}</div>
         <div className = "proExp">
             <div className = "proExpTitle">Professional Experience</div>
-            {data.proExperience.map((proExp,index) => {
+            {data.proExperience && data.proExperience.map((proExp,index) => {
                 return <div key = {index} className = "proExpUnit">
                     <div className = "date">{proExp.startdate} - {proExp.enddate}</div>
                     <div className = "companyName">Company Name : {proExp.companyname}</div>
@@ -19,7 +19,7 @@ function Resume({data}) {
         </div>
         <div className = "exp">
             <div className="expTitle">Education</div>
-            {data.experience.map((exp,index) => {
+            {data.experience && data.experience.map((exp,index) => {
                 return <div key = {index*100} className = "expUnit">
                     <div className="date">{exp.startdate} - {exp.enddate}</div>
                     <div className="schoolName">School Name : {exp.schoolname}</div>

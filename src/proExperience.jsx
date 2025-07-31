@@ -2,13 +2,14 @@ import {useState} from "react";
 
 
 function ProExperience({sendData}) {
+    const [number,setNumber] = useState(0);
     const [currentProExperience,setCurrentProExperience] = useState({
+        number:number,
         companyname:"",
         positiontitle:"",
         startdate:"",
         enddate:""
     });
-    const [number,setNumber] = useState(0);
     const [proExperience,setProExperience] = useState([]);
     const [showSuccess,setShowSuccess] = useState(false);
     const fieldStyle = {
@@ -27,12 +28,14 @@ function ProExperience({sendData}) {
             // Le formulaire est invalide : ne pas continuer
             return;
         }
-        setNumber(number+1);
+        const newNumber = number+1;
+        setNumber(newNumber);
         const updatedProExperience = [...proExperience,currentProExperience]; // car state asynchrone, on veut avoir cette màj instantanément
         setProExperience(updatedProExperience); 
         sendData(updatedProExperience);
         console.log(updatedProExperience);
         setCurrentProExperience({
+            number:newNumber,
             companyname:"",
             positiontitle:"",
             startdate:"",
