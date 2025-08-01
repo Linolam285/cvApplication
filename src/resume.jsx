@@ -3,9 +3,10 @@ import "./resume.css";
 
 
 function Resume({data}) {
-    return <>
+    return (<div id = "resume">
         <h1 className ="fullName">{data.info.fullname}</h1>
         <div className = "emailphone">{data.info.email} • {data.info.phonenumber}</div>
+        <hr style={{ border: "none", borderTop: "2px solid black", margin: "1rem 0" }} />
         <div className = "proExp">
             <div className = "proExpTitle">Professional Experience</div>
             {data.proExperience && data.proExperience.map((proExp,index) => {
@@ -17,6 +18,7 @@ function Resume({data}) {
                 //return nécessaire car syntaxe avec flèche sans parenthèses (return explicite ici)
             })}
         </div>
+        <hr style={{ border: "none", borderTop: "2px solid black", margin: "1rem 0" }} />
         <div className = "exp">
             <div className="expTitle">Education</div>
             {data.experience && data.experience.map((exp,index) => {
@@ -27,7 +29,7 @@ function Resume({data}) {
                 </div>
             })}
         </div>
-    </>
+    </div>)
 }
 
 

@@ -1,4 +1,6 @@
 #root {
+  display:flex;
+  gap:8vw;
   width:100vw;
   background-color:#ebedf3;
   padding:20px;

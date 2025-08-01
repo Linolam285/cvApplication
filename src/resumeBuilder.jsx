@@ -5,7 +5,7 @@ import Experience from "./experience.jsx";
 import "./resumeBuilder.css";
 
 function ResumeBuilder({sendAll}) { 
-    const [isSubmitted,setIsSubmitted] = useState(false);
+    
     const [info,setInfo] = useState(null);
     const [experience,setExperience] = useState(null);
     const [proExperience, setProExperience] = useState(null);
@@ -27,7 +27,6 @@ function ResumeBuilder({sendAll}) {
     const submitForm = (e) => {
        e.preventDefault();
        sendAll(info,experience,proExperience);
-       setIsSubmitted(true);
     }
 
 
@@ -36,11 +35,7 @@ function ResumeBuilder({sendAll}) {
             <Info sendData = {handleInfo}/>
             <Experience sendData = {handleExperience}/>
             <ProExperience sendData = {handleProExperience}/>
-            {!isSubmitted && info !== {}?
-                <button type="submit" id = "submitResumeBuilder" onClick = {submitForm}>Submit</button>
-                    :
-                ""
-            }
+            <button type="submit" id = "submitResumeBuilder" onClick = {submitForm}>Submit</button>
         </div>
     </>
 }
